@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header {
+  background: url("/bg.jpg");
+  background-size: cover;
+  min-height: 100vh;
+}

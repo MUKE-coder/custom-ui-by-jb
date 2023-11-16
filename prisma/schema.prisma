@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs https//pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// prisma/schema.prisma
+model Category {
+  id String      @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  description String?
+  components Component[] 
+   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Component {
+  id String      @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  slug String  @unique
+  imageUrl String
+  categoryId String @db.ObjectId
+  category Category @relation(fields: [categoryId], references: [id],onDelete: Cascade, onUpdate: Cascade)
+  variations Variation[] 
+   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Variation {
+  id String      @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  description String
+  codeString String
+  componentId String @db.ObjectId
+  component Component @relation(fields: [componentId], references: [id],onDelete: Cascade, onUpdate: Cascade)
+   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
