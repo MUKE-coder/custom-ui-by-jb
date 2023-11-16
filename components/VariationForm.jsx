@@ -53,7 +53,6 @@ export default function VariationForm({ components }) {
     router.push("/dashboard/inventory/categories");
   }
   async function onSubmit(data) {
-    data.codeString = codeString;
     console.log(data);
     makePostRequest(setLoading, "api/variations", data, "Variation", reset);
   }
@@ -79,7 +78,7 @@ export default function VariationForm({ components }) {
             options={components}
             className="w-full"
           />
-          <div className="sm:col-span-2">
+          {/* <div className="sm:col-span-2">
             <label
               htmlFor="content"
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -93,7 +92,14 @@ export default function VariationForm({ components }) {
               modules={modules}
               formats={formats}
             />
-          </div>
+            
+          </div> */}
+          <TextareaInput
+            label=" Code Snippet"
+            name="codeString"
+            register={register}
+            errors={errors}
+          />
           <TextareaInput
             label=" Description"
             name="description"

@@ -2,29 +2,11 @@
 import React, { useState } from "react";
 import DisplayCategory from "./DisplayCategory";
 
-export default function CategoriesList() {
-  const tabs = [
-    {
-      title: "Application UI",
-      type: "application",
-      description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam corporis non porro nihil dolor beatae dolorem veniam eligendi! Illo, consequatur quasi nam debitis aspernatur vero! Doloribus autem accusantium ullam voluptatibus.",
-    },
-    {
-      title: "Marketing",
-      type: "marketing",
-      description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam corporis non porro nihil dolor beatae dolorem veniam eligendi! Illo, consequatur quasi nam debitis aspernatur vero! Doloribus autem accusantium ullam voluptatibus.",
-    },
-    {
-      title: "Ecommerce",
-      type: "ecommerce",
-      description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam corporis non porro nihil dolor beatae dolorem veniam eligendi! Illo, consequatur quasi nam debitis aspernatur vero! Doloribus autem accusantium ullam voluptatibus.",
-    },
-  ];
+export default function CategoriesList({ categories }) {
+  const tabs = categories;
 
-  const [displayedCategory, setDisplayedCategory] = useState("application");
+  const [displayedCategory, setDisplayedCategory] = useState(tabs[0].type);
+  console.log(displayedCategory);
   return (
     <section className="bg-white dark:bg-gray-900 rounded-md shadow">
       <div className="py-8 px-4 mx-auto  lg:py-8">
@@ -51,22 +33,13 @@ export default function CategoriesList() {
             })}
           </ul>
         </div>
-        {displayedCategory === "application" ? (
-          <DisplayCategory
-            title="Application"
-            desc="This is the application Category"
-          />
-        ) : displayedCategory === "marketing" ? (
-          <DisplayCategory
-            title="Marketing"
-            desc="This is the marketing Category"
-          />
-        ) : (
-          <DisplayCategory
-            title="Eccomerce"
-            desc="This is the ecommerce Category"
-          />
-        )}
+        {tabs.map((tab, i) => {
+          if (displayedCategory === tab.type) {
+            console.log(tab.components);
+            return <DisplayCategory components={tab.components} key={i} />;
+          }
+          return null;
+        })}
       </div>
     </section>
   );

@@ -32,7 +32,7 @@ export default function CreateForm({ categories, components }) {
   }
   return (
     <section className="bg-white dark:bg-gray-900 rounded-md shadow-lg">
-      <div className="py-8 px-4 mx-auto max-w-2xl lg:py-8">
+      <div className="py-8 px-4 mx-auto max-w-4xl lg:py-8">
         <h2 className="text-slate-900 text-2xl mb-3">Create a Component</h2>
         <div className="border-b border-gray-200 dark:border-gray-700 mb-6">
           <ul className="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">

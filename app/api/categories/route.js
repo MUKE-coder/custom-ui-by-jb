@@ -3,11 +3,12 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { title, description } = await request.json();
+    const { title,type, description } = await request.json();
 
     const category = await db.category.create({
       data: {
         title,
+        type,
         description,
       },
     });
@@ -33,6 +34,9 @@ export async function GET(request) {
       orderBy: {
         createdAt: "desc", //Latest category
       },
+      include:{
+        components:true
+      }
     });
     return NextResponse.json(categories);
   } catch (error) {

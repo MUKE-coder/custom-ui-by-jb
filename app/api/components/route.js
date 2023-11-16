@@ -7,7 +7,10 @@ export async function POST(request) {
 
     const component = await db.component.create({
       data: {
-        title, slug, categoryId, imageUrl
+        title,
+        slug,
+        categoryId,
+        imageUrl,
       },
     });
     console.log(component);
@@ -31,6 +34,9 @@ export async function GET(request) {
     const components = await db.component.findMany({
       orderBy: {
         createdAt: "desc", //Latest category
+      },
+      include: {
+        variations: true,
       },
     });
     return NextResponse.json(components);

@@ -1,7 +1,9 @@
 import ComponentDetail from "@/components/ComponentDetail";
+import { getData } from "@/libs/getData";
 import React from "react";
 
-export default function page() {
+export default async function page({ params: { slug } }) {
+  const component = (await getData(`components/${slug}`)) ?? [];
   return (
     <div>
       <div className="max-w-6xl  mx-auto m-4">
@@ -19,10 +21,10 @@ export default function page() {
           subscription forms and more.
         </p>
       </div>
-      <ComponentDetail />
-      <ComponentDetail />
-      <ComponentDetail />
-      <ComponentDetail />
+
+      {component?.variations.map((variation, i) => {
+        return <ComponentDetail key={i} variation={variation} />;
+      })}
     </div>
   );
 }

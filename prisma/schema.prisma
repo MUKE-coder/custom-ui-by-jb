@@ -14,6 +14,7 @@ datasource db {
 model Category {
   id String      @id @default(auto()) @map("_id") @db.ObjectId
   title String
+  type String
   description String?
   components Component[] 
    createdAt DateTime @default(now())

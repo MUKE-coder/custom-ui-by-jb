@@ -11,6 +11,7 @@
   "dependencies": {
     "@prisma/client": "^5.5.2",
     "@uploadthing/react": "^5.7.0",
+    "html-react-parser": "^5.0.6",
     "lucide-react": "^0.290.0",
     "next": "14.0.2",
     "react": "^18",

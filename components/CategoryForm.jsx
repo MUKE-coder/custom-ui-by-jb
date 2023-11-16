@@ -3,6 +3,7 @@ import SubmitButton from "@/components/FormInputs/SubmitButton";
 import TextInput from "@/components/FormInputs/TextInput";
 import TextareaInput from "@/components/FormInputs/TextareaInput";
 import { makePostRequest } from "@/libs/apiRequest";
+import { generateSlug } from "@/libs/generateSlug";
 import { Plus, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -23,6 +24,8 @@ export default function CategoryForm() {
     router.push("/dashboard/inventory/categories");
   }
   async function onSubmit(data) {
+    const type = generateSlug(data.title);
+    data.type = type;
     makePostRequest(setLoading, "api/categories", data, "Category", reset);
   }
   return (
